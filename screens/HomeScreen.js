@@ -7,8 +7,11 @@ import {
   Text,
   TouchableOpacity,
   View,
+  TouchableHighlight,
 } from 'react-native';
 import { WebBrowser } from 'expo';
+import { SimpleLineIcons } from '@expo/vector-icons';
+
 
 import { MonoText } from '../components/StyledText';
 
@@ -66,16 +69,7 @@ export default class HomeScreen extends React.Component {
         </ScrollView>
 
         <View style={styles.tabBarInfoContainer}>
-          <Text style={styles.tabBarInfoText}>
-            This is a tab bar. You can edit it in:
-          </Text>
-
-          <View
-            style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-            <MonoText style={styles.codeHighlightText}>
-              navigation/MainTabNavigator.js
-            </MonoText>
-          </View>
+          <SimpleLineIcons name="plus" size={50} color="green" />          
         </View>
       </View>
     );
@@ -181,7 +175,7 @@ const styles = StyleSheet.create({
         elevation: 20,
       },
     }),
-    alignItems: 'center',
+    alignItems: 'flex-end',
     backgroundColor: '#fbfbfb',
     paddingVertical: 20,
   },
