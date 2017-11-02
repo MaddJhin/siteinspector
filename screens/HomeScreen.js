@@ -143,15 +143,19 @@ export default class HomeScreen extends React.Component {
   };
 
   _findAllSites = () => {
-    API.getSites()
-      .then( () => {
-        console.log("Got Site Data?");
-        console.log(res.data);
-      });
+    console.log("finding sites");
+   
+    // API.getSites()
+    //   .then( () => {
+    //     console.log("Got Site Data?");
+    //     console.log(res.data);
+    //   });
   };
 
   _createSite = () => {
-    API.saveSites()
+    API.saveSite({ownerName: "Francisco", policyNumber:"001"})
+    .then(res => this._findAllSites())
+    .catch(err => console.log(err));
   };
 }
 
