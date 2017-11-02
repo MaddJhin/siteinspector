@@ -7,6 +7,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Button,
   TouchableHighlight,
 } from 'react-native';
 import { WebBrowser } from 'expo';
@@ -26,7 +27,7 @@ export default class HomeScreen extends React.Component {
         <ScrollView
           style={styles.container}
           contentContainerStyle={styles.contentContainer}>
-          <View style={styles.welcomeContainer}>
+          {/* <View style={styles.welcomeContainer}>
             <Image
               source={
                 __DEV__
@@ -65,11 +66,19 @@ export default class HomeScreen extends React.Component {
                 Help, it didn’t automatically reload!
               </Text>
             </TouchableOpacity>
-          </View>
+          </View> */}
+
+          
+
+
         </ScrollView>
 
         <View style={styles.tabBarInfoContainer}>
-          <SimpleLineIcons name="plus" size={50} color="green" />          
+          <Button 
+            onPress={this._findAllProjects}
+            title="Find Projects">
+            {/* <SimpleLineIcons name="plus" size={50} color="green" />           */}
+          </Button> 
         </View>
       </View>
     );
@@ -108,6 +117,10 @@ export default class HomeScreen extends React.Component {
     WebBrowser.openBrowserAsync(
       'https://docs.expo.io/versions/latest/guides/up-and-running.html#can-t-see-your-changes'
     );
+  };
+
+  _findAllProjects = () => {
+    
   };
 }
 
