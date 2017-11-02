@@ -13,13 +13,21 @@ import {
 import { WebBrowser } from 'expo';
 import { SimpleLineIcons } from '@expo/vector-icons';
 
-
+import API from '../utils/API';
 import { MonoText } from '../components/StyledText';
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };
+
+  state = {
+    sites: []
+  }
+
+  componentDidMount() {
+    this._findAllSites();
+  }
 
   render() {
     return (
@@ -68,14 +76,29 @@ export default class HomeScreen extends React.Component {
             </TouchableOpacity>
           </View> */}
 
-          
-
+          <View>
+          {this.state.sites.length ? (
+              <List>
+                {this.state.sites.map(site => (
+                  <ListItem>
+                      <strong>
+                        owner: {site.ownerName} policy {site.policyNumber}
+                      </strong>
+                  </ListItem>
+                ))}
+              </List>
+            ) : (
+              <Text>
+                No Results to Display
+              </Text>
+            )}
+          </View>
 
         </ScrollView>
 
         <View style={styles.tabBarInfoContainer}>
           <Button 
-            onPress={this._findAllProjects}
+            onPress={this._findAllSites}
             title="Find Projects">
             {/* <SimpleLineIcons name="plus" size={50} color="green" />           */}
           </Button> 
@@ -119,8 +142,16 @@ export default class HomeScreen extends React.Component {
     );
   };
 
-  _findAllProjects = () => {
-    
+  _findAllSites = () => {
+    API.getSites()
+      .then( () => {
+        console.log("Got Site Data?");
+        console.log(res.data);
+      });
+  };
+
+  _createSite = () => {
+    API.saveSites()
   };
 }
 
